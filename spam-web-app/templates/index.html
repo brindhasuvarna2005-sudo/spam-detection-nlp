@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Spam Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>⚡ AI Spam Detection Dashboard</h1>
+
+    <div class="glass-card">
+
+        <!-- 🔥 TYPE SELECT -->
+        <select id="type" onchange="toggleInput()">
+            <option value="sms">SMS</option>
+            <option value="email">Email</option>
+        </select>
+
+        <!-- 🔥 SUBJECT FIELD -->
+        <input id="subject" placeholder="Enter subject (for email)" class="hidden">
+
+        <!-- MESSAGE -->
+        <textarea id="message" placeholder="Paste your message..."></textarea>
+
+        <button onclick="analyze()">Analyze</button>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" class="result hidden">
+        <h2 id="label"></h2>
+
+        <div class="bar-container">
+            <p>🚨 Spam Probability</p>
+            <div class="meter"><div id="spamBar"></div></div>
+            <p id="spamText"></p>
+        </div>
+
+        <div class="bar-container">
+            <p>✅ Ham Probability</p>
+            <div class="meter"><div id="hamBar"></div></div>
+            <p id="hamText"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+
+// 🔥 TOGGLE SUBJECT FIELD
+function toggleInput() {
+    const type = document.getElementById("type").value;
+    const subject = document.getElementById("subject");
+
+    if (type === "email") {
+        subject.classList.remove("hidden");
+    } else {
+        subject.classList.add("hidden");
+    }
+}
+
+
+// 🔥 UPDATED ANALYZE FUNCTION
+async function analyze() {
+    const message = document.getElementById("message").value;
+    const type = document.getElementById("type").value;
+    const subject = document.getElementById("subject").value;
+
+    if (!message) {
+        alert("Enter message!");
+        return;
+    }
+
+    const res = await fetch("/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            message: message,
+            subject: subject,
+            type: type
+        })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("label").innerText =
+        data.label === "Spam" ? "🚨 Spam Detected" : "✅ Safe Message";
+
+    document.getElementById("spamBar").style.width = data.spam_confidence + "%";
+    document.getElementById("hamBar").style.width = data.ham_confidence + "%";
+
+    // 🔥 COLOR FIX ADDED HERE
+    document.getElementById("spamBar").style.background = "#ff4d4d";
+    document.getElementById("hamBar").style.background = "#00ff99";
+
+    document.getElementById("spamText").innerText = data.spam_confidence + "%";
+    document.getElementById("hamText").innerText = data.ham_confidence + "%";
+
+    document.getElementById("result").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
