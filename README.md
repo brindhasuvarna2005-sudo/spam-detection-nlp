@@ -185,26 +185,41 @@ You'll see a form where you can type your message and get an instant prediction.
 
 | Type  | Input | Expected |
 |-------|-------|----------|
-| SMS   | `Hey, are you coming for lunch today?` | ✅ Ham |
-| SMS   | `Congratulations! You've won a FREE iPhone. Click here to claim your prize!` | 🚨 Spam |
-| Email | Subject: `Meeting Tomorrow` · Body: `Hi, confirming our 10am meeting.` | ✅ Ham |
-| Email | Subject: `Exclusive Offer` · Body: `You have been selected to receive $1000. Claim at www.prize.com` | 🚨 Spam |
+| SMS   | `Hey, are you coming for lunch today?` | Ham |
+| SMS   | `Congratulations! You've won a FREE iPhone. Click here to claim your prize!` | Spam |
+| Email | Subject: `Meeting Tomorrow` · Body: `Hi, confirming our 10am meeting.` | Ham |
+| Email | Subject: `Exclusive Offer` · Body: `You have been selected to receive $1000. Claim at www.prize.com` | Spam |
 
 ---
 
-### 📸 Screenshots
+### Screenshots
 
-> _Add screenshots here after running the app_
-
-```
-reports/screenshots/ui_home.png
-reports/screenshots/spam_result.png
-reports/screenshots/ham_result.png
-```
-
+### Home Screen
 ![Home Screen](reports/screenshots/ui_home.png)
-![Spam Result](reports/screenshots/spam_result.png)
-![Ham Result](reports/screenshots/ham_result.png)
+
+### Email Ham Input
+![Email Ham Input](reports/screenshots/email_ham_input.png)
+
+### Email Ham Result
+![Email Ham Result](reports/screenshots/email_ham_result.png)
+
+### Email Spam Input
+![Email Spam Input](reports/screenshots/email_spam_input.png)
+
+### Email Spam Result
+![Email Spam Result](reports/screenshots/email_spam_result.png)
+
+### SMS Ham Input
+![SMS Ham Input](reports/screenshots/sms_ham_input.png)
+
+### SMS Ham Result
+![SMS Ham Result](reports/screenshots/sms_ham_result.png)
+
+### SMS Spam Input
+![SMS Spam Input](reports/screenshots/sms_spam_input.png)
+
+### SMS Spam Result
+![SMS Spam Result](reports/screenshots/sms_spam_results.png)
 
 ---
 
