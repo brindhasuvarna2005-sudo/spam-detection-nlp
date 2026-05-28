@@ -157,9 +157,9 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Then open your browser and go to:
+The app is live at:
 ```
-http://localhost:5000
+https://huggingface.co/spaces/BriSuv/spam-detection-nlp
 ```
 
 You'll see a form where you can type your message and get an instant prediction.
